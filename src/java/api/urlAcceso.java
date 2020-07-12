@@ -29,4 +29,15 @@ public class urlAcceso {
         return Response.ok(g.toJson(jobject), MediaType.APPLICATION_JSON).build();
     }
 
+    @Path("/product/save")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response guardar(product p) {
+        product bean = p;
+        productDAO dao = new productDAO(bean);
+        boolean valida = dao.save();
+        return Response.ok(valida).build();
+    }
+
 }

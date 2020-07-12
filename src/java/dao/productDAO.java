@@ -12,7 +12,7 @@ public class productDAO {
 
     private int number;
     private String prod_name;
-   
+
     URL url = getClass().getResource("products.json");
 
     public productDAO() {
@@ -38,5 +38,26 @@ public class productDAO {
         return jobject;
     }
 
-   
+    public boolean save() {
+        boolean save = false;
+        FileReader fr;
+        JsonObject jobject = null;
+        JsonParser parser = new JsonParser();
+        FileWriter fw;
+        try {
+            fr = new FileReader(url.getPath());
+            JsonElement datos = parser.parse(fr);
+            jobject = datos.getAsJsonObject();
+            jobject.addProperty("name", prod_name);
+            jobject.addProperty("id", number);
+            fw = new FileWriter(url.getPath());
+            fw.write(jobject.toString());
+            fw.close();
+            save = true;
+            fr.close();
+        } catch (Exception e) {
+        }
+        return save;
+    }
+
 }
