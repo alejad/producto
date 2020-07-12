@@ -11,6 +11,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import dao.couponDAO;
 import dao.productDAO;
 
 import javax.ws.rs.POST;
@@ -66,8 +67,10 @@ public class urlAcceso {
     @GET
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response lista(product p) {
-        return null;
+    public Response lista() {
+        couponDAO dao = new couponDAO();
+        JsonObject jobject = dao.coupon();
+        return Response.ok(g.toJson(jobject), MediaType.APPLICATION_JSON).build();
     }
 
     @Path("/bono/valida")
