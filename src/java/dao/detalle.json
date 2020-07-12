@@ -1,0 +1,14 @@
+{
+    "products": [
+        {
+            "id_product": 1,
+            "description": "1 kilo",
+            "precio": "10000"
+        },
+        {
+            "id_product": 2,
+            "description": "2 litros",
+            "precio": "4000"
+        }
+    ]
+}

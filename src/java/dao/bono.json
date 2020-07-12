@@ -1,0 +1,13 @@
+{
+    "coupon": [
+        {
+            "id": 1,
+            "name":"cupon 1",
+            "description":"cupon1",
+            "product_id":1,
+            "valid_since":"2019",
+            "valid_until":"2019"
+            
+        }
+    ]
+}

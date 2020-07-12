@@ -1,6 +1,7 @@
 package dao;
 
 import bean.product;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -60,4 +61,27 @@ public class productDAO {
         return save;
     }
 
+    public JsonObject detalle() {
+        url = getClass().getResource("detalle.json");
+        JsonParser parser = new JsonParser();
+        JsonObject jobject = null;
+        FileReader fr;
+        try {
+            fr = new FileReader(url.getPath());
+            JsonElement datos = parser.parse(fr);
+            jobject = datos.getAsJsonObject();
+            JsonArray arrayImages = jobject.getAsJsonArray("products");
+            for (JsonElement arrayImage : arrayImages) {
+                jobject = arrayImage.getAsJsonObject();
+                if (jobject.getAsJsonPrimitive("id_product").getAsString().equals(String.valueOf(number))) {
+                    jobject = arrayImage.getAsJsonObject();
+                    break;
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error " + e);
+        }
+        return jobject;
+    }
 }

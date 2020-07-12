@@ -1,5 +1,6 @@
 package api;
 
+import bean.coupon;
 import bean.product;
 
 import javax.ws.rs.Consumes;
@@ -38,6 +39,43 @@ public class urlAcceso {
         productDAO dao = new productDAO(bean);
         boolean valida = dao.save();
         return Response.ok(valida).build();
+    }
+
+    @Path("/product/detalle")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response detalle(product p) {
+        product bean = p;
+        productDAO dao = new productDAO(bean);
+        JsonObject jobject = dao.detalle();
+        return Response.ok(g.toJson(jobject), MediaType.APPLICATION_JSON).build();
+
+    }
+
+    @Path("/bono/save")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response save(coupon c) {
+
+        return null;
+    }
+
+    @Path("/bono/lista")
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response lista(product p) {
+        return null;
+    }
+
+    @Path("/bono/valida")
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response valida(product p) {
+        return null;
     }
 
 }
